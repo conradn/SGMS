@@ -1,0 +1,20 @@
+<form method="post" action="/register">
+  <label for="firstname">First Name:</label>
+  <input type="text" id="firstname" name="firstname" required>
+
+  <label for="lastname">Last Name:</label>
+  <input type="text" id="lastname" name="lastname" required>
+
+  <label for="phone">Phone Number:</label>
+  <input type="tel" id="phone" name="phone" required>
+
+  <label for="role">Role:</label>
+  <select id="role" name="role" required>
+    <option value="">Select a role</option>
+    <option value="admin">Admin</option>
+    <option value="editor">Editor</option>
+    <option value="user">User</option>
+  </select>
+
+  <button type="submit">Register</button>
+</form>
