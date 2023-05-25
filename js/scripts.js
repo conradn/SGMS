@@ -24,3 +24,51 @@ window.addEventListener('DOMContentLoaded', event => {
     }
 
 });
+
+
+document.getElementById("myform").addEventListener("submit", function (event) {
+  event.preventDefault(); // Prevent form submission
+
+  // Capture form data
+  var name = document.getElementsByName("name").value;
+  var email = document.getElementsByName("email").value;
+  var role = document.getElementsByName("role").value;
+
+  // Create an object with the captured data
+  var formData = {
+    name: name,
+    email: email,
+    role: role,
+  };
+
+  // Call a function to send the data to the API
+  sendData(formData);
+});
+
+function sendData(formData) {
+  fetch("http://sgms.bse23-5.one/api/create-account", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+  })
+    .then((response) => {
+      // Handle the response from the API
+      if (response.ok) {
+        // Request successful
+        console.log("Data sent successfully");
+      } else {
+        // Request failed
+        console.log("Failed to send data");
+      }
+    })
+    .catch((error) => {
+      // Handle any error that occurred during the request
+      console.error("Error:", error);
+    });
+}
+
+
+
+

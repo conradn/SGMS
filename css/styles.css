@@ -11241,3 +11241,42 @@ body {
   font-size: 0.75rem;
   border-radius: 0.375rem !important;
 }
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+select {
+  font-size: 16px;
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+select:focus {
+  outline: none;
+  border-color: #5b9dd9;
+  box-shadow: 0 0 5px #5b9dd9;
+}
+#x-button{
+  background-color: #f44336;
+  border: none;
+  color: white;
+  padding: 6px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  float: right;
+}
+#x-button:hover{
+  float: right;
+  background-color: lightcoral;
+  border: none;
+  color: white;
+  padding: 6px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+}
