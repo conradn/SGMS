@@ -168,7 +168,7 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputPasswordConfirm" type="password" placeholder="Confirm password" />
+                                                        <input class="form-control" id="inputPasswordConfirm" type="password" placeholder="Confirm password" name="password_confirmation" />
                                                         <label for="inputPasswordConfirm">Confirm Password</label>
                                                     </div>
                                                 </div>
@@ -177,8 +177,8 @@
                                                 <label for="role">Role:</label>
                                                 <select id="role" name="role" required>
                                                     <option value="">Select a role</option>
-                                                    <option value="admin">Admin</option>
-                                                    <option value="editor">Supervisor</option>
+                                                    <option value="Administrator">Admin</option>
+                                                    <option value="Supervisor">Supervisor</option>
                                                     <option value="user">Bin User</option>
                                                 </select>
                                             </div>
@@ -218,5 +218,7 @@
         <script src="js/scripts.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
     </body>
 </html>

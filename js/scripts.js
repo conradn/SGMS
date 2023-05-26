@@ -30,44 +30,63 @@ document.getElementById("myform").addEventListener("submit", function (event) {
   event.preventDefault(); // Prevent form submission
 
   // Capture form data
-  var name = document.getElementsByName("name").value;
-  var email = document.getElementsByName("email").value;
-  var role = document.getElementsByName("role").value;
+  var name = document.getElementById("inputLastName").value;
+  var email = document.getElementById("inputEmail").value;
+  var password = document.getElementById("inputPassword").value;
+  var password_confirmation = document.getElementById(
+    "inputPasswordConfirm"
+  ).value;
+  var role = document.getElementById("role").value;
 
   // Create an object with the captured data
+  console.log(name);
   var formData = {
     name: name,
     email: email,
+    password: password,
     role: role,
+    password_confirmation: password_confirmation,
   };
+  console.log(formData);
 
   // Call a function to send the data to the API
   sendData(formData);
 });
 
 function sendData(formData) {
-  fetch("http://sgms.bse23-5.one/api/create-account", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(formData),
-  })
+  axios
+    .post("http://sgms.bse23-5.one/api/create-account", formData)
     .then((response) => {
       // Handle the response from the API
-      if (response.ok) {
-        // Request successful
-        console.log("Data sent successfully");
-      } else {
-        // Request failed
-        console.log("Failed to send data");
-      }
+      console.log("Data sent successfully");
+      //capture token
+      console.log(response);
+      // if (response.data.status == 200) {
+
+      //   //save token to local storage
+      //   localStorage.setItem("token", response.data.token);
+      //   localStorage.setItem("user", JSON.stringify(response.data.user));
+       
+      //   //redirect to dashboard
+      //   window.location.href = "dashboard.html";
+      // }
+
+
+
     })
     .catch((error) => {
       // Handle any error that occurred during the request
       console.error("Error:", error);
     });
 }
+
+
+
+ 
+
+
+
+
 
 
 
