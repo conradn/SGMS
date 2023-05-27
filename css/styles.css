@@ -11280,3 +11280,9 @@ select:focus {
   display: inline-block;
   font-size: 20px;
 }
+#numberOfBins{
+  float: right;
+}
+#fullBins{
+  float: right;
+}
