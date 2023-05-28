@@ -51,7 +51,8 @@ function getBins() {
       console.log(bins);
       numberOfBins = bins.length;
       document.getElementById("numberOfBins").innerHTML = numberOfBins;
-      fullBins = bins.filter((bin) => bin.status == "full").length;
+      fullBins = bins.filter((bin) => bin.status == "Full").length;
+
         document.getElementById("fullBins").innerHTML = fullBins;
     })
     .catch((error) => {
