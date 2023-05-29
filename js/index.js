@@ -62,3 +62,54 @@ function getBins() {
 }
 getBins();
 console.log(getBins());
+
+
+function getSupervisors() {
+
+var supervisors = [];
+  axios 
+  .get("http://sgms.bse23-5.one/api/supervisors", {
+    headers: {
+      Authorization: "Bearer " + token(),
+      "Content-Type": "application/json",
+    },
+
+  }).then((response) => {
+    console.log(response);
+    supervisors = response.data.supervisors;
+    console.log(supervisors);
+    // supervisors.forEach((supervisor) => {
+    //   var tbody = document.querySelector("tbody");
+
+    //   var row = tbody.insertRow();
+    //   var id = row.insertCell(0);
+    //   var name = row.insertCell(1);
+    //   var email = row.insertCell(2);
+    //   var phone = row.insertCell(3);
+    //   var action = row.insertCell(4);
+    //   id.innerHTML = supervisor.id;
+    //   name.innerHTML = supervisor.name;
+    //   email.innerHTML = supervisor.email;
+    //   phone.innerHTML = supervisor.phone;
+    //   action.innerHTML = `<a href="supervisor.html?id=${supervisor.id}" class="btn btn-primary btn-sm">View</a> <a href="supervisor.html?id=${supervisor.id}" class="btn btn-primary btn-sm">Edit</a>`;
+    // });
+    numberOfSupervisors = supervisors.length;
+    document.getElementById("numberOfSupervisors").innerHTML = numberOfSupervisors;
+  }
+  ).catch((error) => {
+    console.error("Error:", error);
+  }
+  );
+  return supervisors;
+}
+getSupervisors();
+
+function isLogin() {
+  
+  if (token() == null) {
+    console.log("not logged in");
+    window.location.href = "login.html";
+
+  }
+}
+isLogin();

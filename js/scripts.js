@@ -61,15 +61,14 @@ function sendData(formData) {
       console.log("Data sent successfully");
       //capture token
       console.log(response);
-      // if (response.data.status == 200) {
-
-      //   //save token to local storage
-      //   localStorage.setItem("token", response.data.token);
-      //   localStorage.setItem("user", JSON.stringify(response.data.user));
-       
-      //   //redirect to dashboard
-      //   window.location.href = "dashboard.html";
-      // }
+    //notify user of successful registration
+    Swal.fire({
+      icon: 'success',
+      title: 'Registration Successful',
+      text: 'You can now login to your account',
+      footer: '<a href="login.html">Login</a>' 
+    })
+    
 
 
 
