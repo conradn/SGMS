@@ -25,15 +25,17 @@
                                     </button>
                                 </div>
                                 <div class="card-body">
-                                    <form>
+                                    <form id="binRegistrationForm">
                                         <div class="form-floating mb-3">
                                             <input class="form-control" id="binReference" type="text" placeholder="Enter bin reference number" />
                                             <label for="binReference">Bin Reference Number</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" id="binLocation" type="text" placeholder="Enter bin location" />
-                                            <label for="binLocation">Location</label>
-                                        </div>
+    <div id="map" style="width: 100%; height: 400px;"></div>
+    <input class="form-control" id="binLocation" type="text" placeholder="Enter bin location" readonly />
+    <label for="binLocation">Location</label>
+</div>
+
                                         <div class="form-floating mb-3">
                                             <input class="form-control" id="binCapacity" type="text" placeholder="Enter bin capacity" />
                                             <label for="binCapacity">Bin Capacity</label>
@@ -43,25 +45,26 @@
                                                 <option value="" disabled selected>Select bin status</option>
                                                 <option value="active">Active</option>
                                                 <option value="inactive">Inactive</option>
-                                                <option value="maintenance">Under Maintenance</option>
-                                                <option value="other">Other</option>
+                                                <option value="Full">Full</option>
+                                                <option value="Empty">Empty</option>
                                             </select>
                                             <label for="binStatus">Status</label>
                                         </div>
-                                        <div class="form-floating mb-3">
-                                            <select class="form-control" id="supervisorName" name="supervisorName">
-                                                <option value="" disabled selected>Select supervisor's name</option>
-                                                <option value="John Doe">John Doe</option>
-                                                <option value="Jane Smith">Jane Smith</option>
-                                                <option value="Robert Johnson">Robert Johnson</option>
-                                            </select>
-                                            <label for="supervisorName">Supervisor's Name</label>
-                                        </div>
+                                       <div class="form-floating mb-3">
+    <select class="form-control" id="supervisorName" name="supervisorName">
+        <option value="" disabled selected>Select supervisor's name</option>
+    </select>
+    <label for="supervisorName">Supervisor's Name</label>
+</div>
                                         <div class="mt-4 mb-0 d-flex">
-                                            <div class="col-xl-3"><a class="btn btn-primary" href="login.html">Create user</a></div>
-                                            <div class="col-xl-3"><a class="btn btn-primary" href="login.html">Cancel</a></div>
+                                            <div class="col-xl-3"><button class="btn btn-primary"
+                                                type="submit" >Create Bin</button></div>
+                                            <div class="col-xl-3"><a class="btn btn-primary" href="index.html">Cancel</a></div>
                                         </div>
                                     </form>
+                                     <div id="successMessage" style="display: none;">
+        Your message has been sent successfully!
+    </div>
                                 </div>
                             </div>
                         </div>
@@ -84,7 +87,46 @@
             </footer>
         </div>
     </div>
+    <script>
+   var map;
+var marker;
+
+function initMap() {
+    var mapOptions = {
+        center: { lat: 0, lng: 0 },
+        zoom: 8
+    };
+    
+    map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+    marker = new google.maps.Marker({
+        map: map,
+        draggable: true
+    });
+
+    google.maps.event.addListener(marker, 'dragend', function(event) {
+        var location = event.latLng.lat() + ', ' + event.latLng.lng();
+        document.getElementById('binLocation').value = location;
+    });
+
+    google.maps.event.addListener(map, 'click', function(event) {
+        //console.log("clicked")
+        marker.setPosition(event.latLng);
+        var location = event.latLng.lat() + ', ' + event.latLng.lng();
+        document.getElementById('binLocation').value = location;
+    });
+}
+
+</script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBAKCjoTweJMBFrxP0cxOdO_j_7yX0UFrU&callback=initMap" async defer></script>
+     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="js/scripts.js"></script>
+    <script src="js/binRegistration.js"></script>
+    
+   
+    
+
 </body>
 </html>

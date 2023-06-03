@@ -62,13 +62,8 @@ function sendData(formData) {
       //capture token
       console.log(response);
     //notify user of successful registration
-    Swal.fire({
-      icon: 'success',
-      title: 'Registration Successful',
-      text: 'You can now login to your account',
-      footer: '<a href="login.html">Login</a>' 
-    })
-    
+    document.getElementById("successMessage").style.display = "block";
+
 
 
 
@@ -78,6 +73,8 @@ function sendData(formData) {
       console.error("Error:", error);
     });
 }
+
+
 
 
 

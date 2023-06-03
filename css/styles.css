@@ -11286,3 +11286,6 @@ select:focus {
 #fullBins{
   float: right;
 }
+#numberOfSupervisors{
+  float: right;
+}

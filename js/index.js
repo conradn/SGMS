@@ -24,10 +24,10 @@ function getBins() {
       console.log(bins);
       //putting data into table
 
+      var tbody = document.querySelector("tbody");
+
       bins.forEach((bin) => {
         // var table = document.getElementsByName("datatablesSimple");
-
-        var tbody = document.querySelector("tbody");
 
         var row = tbody.insertRow();
         var id = row.insertCell(0);
@@ -43,9 +43,13 @@ function getBins() {
         status.innerHTML = bin.status;
         level.innerHTML = bin.bin_level;
         capacity.innerHTML = bin.bin_capacity;
-        supervisor.innerHTML = bin.supervisor_id;
+        supervisor.innerHTML = bin.supervisor;
         location.innerHTML = bin.location;
         action.innerHTML = `<a href="bin.html?id=${bin.id}" class="btn btn-primary btn-sm">View</a> <a href="bin.html?id=${bin.id}" class="btn btn-primary btn-sm">Edit</a>`;
+
+        if (bin.status == "Full") {
+          row.style.backgroundColor = "lightcoral";
+        }
       });
 
       console.log(bins);
@@ -53,7 +57,7 @@ function getBins() {
       document.getElementById("numberOfBins").innerHTML = numberOfBins;
       fullBins = bins.filter((bin) => bin.status == "Full").length;
 
-        document.getElementById("fullBins").innerHTML = fullBins;
+      document.getElementById("fullBins").innerHTML = fullBins;
     })
     .catch((error) => {
       console.error("Error:", error);
@@ -63,53 +67,57 @@ function getBins() {
 getBins();
 console.log(getBins());
 
-
 function getSupervisors() {
+  var supervisors = [];
+  axios
+    .get("http://sgms.bse23-5.one/api/supervisors", {
+      headers: {
+        Authorization: "Bearer " + token(),
+        "Content-Type": "application/json",
+      },
+    })
+    .then((response) => {
+      console.log(response);
+      supervisors = response.data;
+      console.log(supervisors);
+      // supervisors.forEach((supervisor) => {
+      //   var tbody = document.querySelector("tbody");
 
-var supervisors = [];
-  axios 
-  .get("http://sgms.bse23-5.one/api/supervisors", {
-    headers: {
-      Authorization: "Bearer " + token(),
-      "Content-Type": "application/json",
-    },
+      //   var row = tbody.insertRow();
+      //   var id = row.insertCell(0);
+      //   var name = row.insertCell(1);
+      //   var email = row.insertCell(2);
+      //   var phone = row.insertCell(3);
+      //   var action = row.insertCell(4);
+      //   id.innerHTML = supervisor.id;
+      //   name.innerHTML = supervisor.name;
+      //   email.innerHTML = supervisor.email;
+      //   phone.innerHTML = supervisor.phone;
+      //   action.innerHTML = `<a href="supervisor.html?id=${supervisor.id}" class="btn btn-primary btn-sm">View</a> <a href="supervisor.html?id=${supervisor.id}" class="btn btn-primary btn-sm">Edit</a>`;
+      // });
+      numberOfSupervisors = supervisors.length;
+      document.getElementById("numberOfSupervisors").innerHTML =
+        numberOfSupervisors;
 
-  }).then((response) => {
-    console.log(response);
-    supervisors = response.data.supervisors;
-    console.log(supervisors);
-    // supervisors.forEach((supervisor) => {
-    //   var tbody = document.querySelector("tbody");
-
-    //   var row = tbody.insertRow();
-    //   var id = row.insertCell(0);
-    //   var name = row.insertCell(1);
-    //   var email = row.insertCell(2);
-    //   var phone = row.insertCell(3);
-    //   var action = row.insertCell(4);
-    //   id.innerHTML = supervisor.id;
-    //   name.innerHTML = supervisor.name;
-    //   email.innerHTML = supervisor.email;
-    //   phone.innerHTML = supervisor.phone;
-    //   action.innerHTML = `<a href="supervisor.html?id=${supervisor.id}" class="btn btn-primary btn-sm">View</a> <a href="supervisor.html?id=${supervisor.id}" class="btn btn-primary btn-sm">Edit</a>`;
-    // });
-    numberOfSupervisors = supervisors.length;
-    document.getElementById("numberOfSupervisors").innerHTML = numberOfSupervisors;
-  }
-  ).catch((error) => {
-    console.error("Error:", error);
-  }
-  );
+      var supervisorDropdown = document.getElementById("supervisorName");
+      supervisors.forEach(function (supervisor) {
+        var option = document.createElement("option");
+        option.value = supervisor;
+        option.text = supervisor;
+        supervisorDropdown.appendChild(option);
+      });
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
   return supervisors;
 }
 getSupervisors();
 
 function isLogin() {
-  
   if (token() == null) {
     console.log("not logged in");
     window.location.href = "login.html";
-
   }
 }
 isLogin();
