@@ -100,7 +100,7 @@ function getSupervisors() {
 
     }).then((response) => {
       console.log(response);
-      supervisors = response.data.supervisors;
+      supervisors = response.data;
       console.log(supervisors);
       // supervisors.forEach((supervisor) => {
       //   var tbody = document.querySelector("tbody");
@@ -118,6 +118,7 @@ function getSupervisors() {
       //   action.innerHTML = `<a href="supervisor.html?id=${supervisor.id}" class="btn btn-primary btn-sm">View</a> <a href="supervisor.html?id=${supervisor.id}" class="btn btn-primary btn-sm">Edit</a>`;
       // });
       numberOfSupervisors = supervisors.length;
+      console.log(numberOfSupervisors);
       document.getElementById("numberOfSupervisors").innerHTML = numberOfSupervisors;
     }
     ).catch((error) => {
