@@ -11289,3 +11289,16 @@ select:focus {
 #numberOfSupervisors{
   float: right;
 }
+.cancel-btn{
+            background-color: rgb(244, 58, 58);
+            color: white;
+            float: right;
+            right: 0px;
+            margin-right: 0px;
+        }
+        .cancel-btn:hover{
+            background-color: tomato;
+        }
+        .back:hover{
+            font-size: x-large;
+        }

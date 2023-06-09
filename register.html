@@ -19,6 +19,20 @@
             background-repeat: no-repeat;
             background-position: center;
         }
+
+        .cancel-btn{
+            background-color: rgb(244, 58, 58);
+            color: white;
+            float: right;
+            right: 0px;
+            margin-right: 0px;
+        }
+        .cancel-btn:hover{
+            background-color: tomato;
+        }
+        .back:hover{
+            font-size: x-large;
+        }
     </style>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
@@ -42,7 +56,9 @@
                             <div class="card shadow-lg border-0 rounded-lg mt-5">
                                 <div class="card-header">
                                     <h3 class="text-center font-weight-light my-4">User Registration</h3>
-                                    <button onclick="window.location.href = 'index.html';">
+                                    <button class="back" onclick="window.location.href = 'index.html';"
+                                    style="background-color: #f8f9fa; border: none; outline: none;"
+                                    >
                                         <i class="fas fa-arrow-left mr-2"></i>
                                     </button>
                                     <button id="x-button" class="close-button"
@@ -57,14 +73,8 @@
                                     <div class="card-body">
                                         <form id="myform">
                                             <div class="row mb-3">
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputFirstName" type="text"
-                                                            placeholder="Enter your first name" />
-                                                        <label for="inputFirstName">First name</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
+                                
+                                                <div class="col-md-12">
                                                     <div class="form-floating">
                                                         <input class="form-control" id="inputLastName" type="text"
                                                             placeholder="Enter your name" name="name" />
@@ -109,9 +119,9 @@
                                                 </select>
                                             </div>
                                             <div class="mt-4 mb-0 d-flex">
-                                                <div class="col-xl-3"><button class="btn btn-primary " type="submit"
+                                                <div class="col-xl-6"><button class="btn btn-primary " type="submit"
                                                         name="submit" value="Create user">Create user</button></div>
-                                                <div class="col-xl-3"><a class="btn btn-primary "
+                                                <div class="col-xl-6"><a class="btn cancel-btn "
                                                         href="login.html">Cancel</a></div>
                                             </div>
                                         </form>
