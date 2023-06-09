@@ -21,3 +21,17 @@ function showErrorMessage(message) {
         timerProgressBar: true
     });
 }
+
+
+function showInfoMessage(message) {
+    Swal.fire({
+        icon: 'info',
+        html: message,
+        toast: true,
+        width: 500,
+        position: 'top-end',
+        showConfirmButton: false,
+        showCloseButton: true,
+        timerProgressBar: false,
+    });
+}
